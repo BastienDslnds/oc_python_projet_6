@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JustStreamIt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1>JustStreamIt</h1>
+        <nav class="header-navigation" aria-label="main navigation">
+            <ul>
+                <li class="header-navigation-item">
+                    <a class="current active" href="#">Accueil</a>
+                </li>
+                <li class="header-navigation-item">
+                    <a href="#">Categories</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- section du meilleur film -->
+    <section class="top-film" aria-label="film à la une">
+        <h2 class="top-film-title">Tire du meilleur film</h2>
+        <div class="top-film-buttons">
+            <div class="button-play">
+                <!-- lien devant renvoyer vers l'URL de la vidéo -->
+                <a class="play-top-film" role="link" aria-label="lecture" href="#">
+                    <button class="play-video" aria-label="jouer la video">
+                        <span>Play</span>
+                    </button>
+                </a>
+            </div>
+            <div class="button-info">
+                <!-- lien devant renvoyer vers l'URL de la vidéo -->
+                <a class="info-top-film" role="link" aria-label="lecture" href="#">
+                    <button class="open-info-top-film" aria-label="">
+                        <span>Informations</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+       
+        <div class="modal-top-film">
+            <div class="image-top-film">
+                <img src="https://via.placeholder.com/210?text=1" alt="">
+            </div>
+            <ul class="top-film-info">
+                <li>Titre du film: </li>
+                <li>Genre:</li>
+                <li>Date de sortie:</li>
+                <li>Rated: </li>
+                <li>Score Imdb: </li>
+                <li>Réalisateur: </li>
+                <li>Acteurs: </li>
+                <li>Durée: </li>
+                <li>Pays d'origine: </li>
+                <li>Résultat du Box Office: </li>
+                <li>Résumé du film: </li>
+            </ul>
+            <button class="close-info-top-film">Close</button>
+        </div>
+    </section>
+
+    <!-- section des différentes catégories -->
+    <section id="categories" aria-hidden="false">
+
+        <!-- division des meilleurs films -->
+        <div class="category-top-rated">
+            <div class="title-category">
+                <h1>Films les mieux notés</h1>
+            </div>
+
+            <!-- liste à puces pour le carousel des films les mieux notés -->
+            <div class="container-category">
+                <button class="handle left-handle">
+                    <div class="text">
+                        &#8249;
+                    </div>
+                </button> 
+
+                <ul class="slider" id="row-1" aria-label="top rated movies">
+                    <li class="carousel-item item-1 first-item">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/210?text=1" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-2">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/220?text=2" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-3">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/230?text=3" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-4 last-item">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/240?text=4" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-5">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/250?text=5" alt>
+                            </div>
+                        </a>
+                    </li>  
+                    <li class="carousel-item item-6">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/260?text=6" alt>
+                            </div>
+                        </a>
+                    </li>  
+                    <li class="carousel-item item-7">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/270?text=7" alt>
+                            </div>
+                        </a>
+                    </li>          
+                </ul>
+
+                <button class="handle right-handle">
+                    <div class="text">&#8250;
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- division de la cateorie 1 -->
+        <div class="category-one">
+            <div class="title-category">
+                <h1>Films les mieux notés</h1>
+            </div>
+
+            <!-- liste à puces pour le carousel des films les mieux notés -->
+            <div class="container-category">
+                <button class="handle left-handle">
+                    <div class="text">
+                        &#8249;
+                    </div>
+                </button> 
+
+                <ul class="slider" id="row-1" aria-label="top rated movies">
+                    <li class="carousel-item item-1 first-item">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/210?text=1" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-2">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/220?text=2" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-3">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/230?text=3" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-4 last-item">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/240?text=4" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-5">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/250?text=5" alt>
+                            </div>
+                        </a>
+                    </li>  
+                    <li class="carousel-item item-6">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/260?text=6" alt>
+                            </div>
+                        </a>
+                    </li>  
+                    <li class="carousel-item item-7">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/270?text=7" alt>
+                            </div>
+                        </a>
+                    </li>          
+                </ul>
+
+                <button class="handle right-handle">
+                    <div class="text">&#8250;
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- division de la categorie 2 -->
+        <div class="category-two">
+            <div class="title-category">
+                <h1>Films les mieux notés</h1>
+            </div>
+
+            <!-- liste à puces pour le carousel des films les mieux notés -->
+            <div class="container-category">
+                <button class="handle left-handle">
+                    <div class="text">
+                        &#8249;
+                    </div>
+                </button> 
+
+                <ul class="slider" id="row-1" aria-label="top rated movies">
+                    <li class="carousel-item item-1 first-item">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/210?text=1" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-2">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/220?text=2" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-3">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/230?text=3" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-4 last-item">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/240?text=4" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-5">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/250?text=5" alt>
+                            </div>
+                        </a>
+                    </li>  
+                    <li class="carousel-item item-6">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/260?text=6" alt>
+                            </div>
+                        </a>
+                    </li>  
+                    <li class="carousel-item item-7">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/270?text=7" alt>
+                            </div>
+                        </a>
+                    </li>          
+                </ul>
+
+                <button class="handle right-handle">
+                    <div class="text">&#8250;
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- division de la categorie 3 -->
+        <div class="category-three">
+            <div class="title-category">
+                <h1>Films les mieux notés</h1>
+            </div>
+
+            <!-- liste à puces pour le carousel des films les mieux notés -->
+            <div class="container-category">
+                <button class="handle left-handle">
+                    <div class="text">
+                        &#8249;
+                    </div>
+                </button> 
+
+                <ul class="slider" id="row-1" aria-label="top rated movies">
+                    <li class="carousel-item item-1 first-item">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/210?text=1" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-2">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/220?text=2" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-3">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/230?text=3" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-4 last-item">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/240?text=4" alt>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carousel-item item-5">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/250?text=5" alt>
+                            </div>
+                        </a>
+                    </li>  
+                    <li class="carousel-item item-6">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/260?text=6" alt>
+                            </div>
+                        </a>
+                    </li>  
+                    <li class="carousel-item item-7">
+                        <a href="#" role="link">
+                            <div>
+                                <img src="https://via.placeholder.com/270?text=7" alt>
+                            </div>
+                        </a>
+                    </li>          
+                </ul>
+
+                <button class="handle right-handle">
+                    <div class="text">&#8250;
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script src="index.js"></script>
+</body>
+</html>

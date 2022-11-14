@@ -1,0 +1,133 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* 3 grands blocs du body */
+
+header
+{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: grey;
+    margin-bottom: 30px;
+    padding: 1rem;
+}
+
+.top-film
+{
+    position: relative;
+    border: 2px solid black;
+    margin-bottom: 30px;
+    padding: 1rem;
+    background-image: url(https://via.placeholder.com/210?text=1);
+    background-size: cover;
+    background-position: 50%;
+}
+
+ #categories 
+ {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+ /* Elements du header */
+
+header h1
+{
+    width: 50%;
+}
+
+.header-navigation ul
+{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-navigation li
+{
+    margin-right: 20px;
+}
+
+/* Elements de la section top-film */
+
+
+
+/* Elements de la section des categories */
+
+.category-top-rated{
+    display: flex;
+    flex-direction: column;
+}
+
+.title-category
+{
+    text-align: center;
+}
+
+.container-category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider
+{
+    --slider-index: 0;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    padding: 0 .25rem 0 0.25rem;
+    margin: 0;
+    transform: translateX(calc(var(--slider-index) * -25%));;
+}
+
+.carousel-item
+{
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding: 0 0.25rem 0 0.25rem;
+}
+
+img {
+    width: 100%;
+}
+
+.handle {
+    width: 5rem;
+    border-radius: 1rem;
+    background-color: rgba(0,0,0, .25);
+    z-index: 10;
+    cursor: pointer ;
+    font-size: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* modal */
+
+.modal-top-film {
+    display: none;
+    background-color: rgba(0, 0, 0);
+    color: white;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
