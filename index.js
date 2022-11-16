@@ -1,29 +1,90 @@
-/* Identifier le meilleur film = meilleure note Imdb
+const urlBestAll = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=7"
+const urlBestGenre1= "http://localhost:8000/api/v1/titles/?genre=comedy&sort_by=-imdb_score&page_size=7"
+const urlBestGenre2 = "http://localhost:8000/api/v1/titles/?genre=thriller&sort_by=-imdb_score&page_size=7"
+const urlBestGenre3 = "http://localhost:8000/api/v1/titles/?genre=history&sort_by=-imdb_score&page_size=7"
+const categoriesUrl = [urlBestAll, urlBestGenre1, urlBestGenre2, urlBestGenre3]
 
-const img_top_film = document.getElementsByClassName('image-layer');
-const top_film_title = document.getElementsByClassName('top-film-title');
-
-/* Récupérer le titre, le résumé et la photo du meilleur film
-fetch("http://localhost:8000/api/v1/titles/4465")
-    .then(function(res) {
-        console.log(res)
-        if (res.ok) {
-        return res.json();
+/* fonction pour récupérer l'image de chaque film d'une catégorie */
+const getMoviesUrlImage = async function(url){
+    return fetch(url)
+    .then(function (response) {
+        if (response.ok) {
+            return response.json()
         }
     })
-    .then(function(value) {
-        top_film_title.textContent = value.title
-        img_top_film.setAttribute("src", value.image_url)
-    })
+    .then(function (datas) {
+        const moviesUrlImage = datas.results.map((data) => data.image_url)
+        return moviesUrlImage
+        })
     .catch(function(err) {
-        // Une erreur est survenue
-    });*/
+        console.log(err);
+    });
+}
+
+const sliders = document.querySelectorAll('.slider')
+
+/* Récupérer les images de chaque catégorie */
+categoriesUrl.forEach(async (url, index) => {
+    const moviesUrlImage = await getMoviesUrlImage(url)
+    const slider = sliders[index]
+    moviesUrlImage.forEach((urlImage, index) => {
+        let img = new Image();
+        img.src = urlImage;
+        slider.children[index].appendChild(img);
+    })
+})
+
+
+/*sliders.forEach((slider) => {
+    const sliderItems = slider.children;
+    return sliderItems;
+})
+.then((datas))*/
+
+/* Boucler sur chaque url catégorie et lancer la fonction de récupération des images */
+
+
+
+/* Classe pour initialiser un carousel 
+- Données d'entrée: */
+
+/*class Carousel {
+    constructor(nb_elements) {
+        this.slider = "";
+        this.createSlider();
+        this.nb_elements = nb_elements;
+    }
+
+    createSlider() {
+        this.slider = document.createElement('ul')
+        this.slider.setAttribute('class', 'slider slider-one')
+    }
+
+    createItems(u) {
+        let item = document.createElement('li')
+        item.setAttribute('class', 'carousel-item item-1')
+        this.slider.appendChild(item)
+    }
+}
+
+var firstCarousel = new Carousel(2);
+firstCarousel.createSlider();
+console.log(firstCarousel.slider)
+firstCarousel.createItem();
+console.log(firstCarousel.slider.children)*/
+
+/* Fonction pour créer un carousel de 7 films */
+
+/* const createCarousel = function(moviesUrl) {
+    for (let movieUrl in moviesUrl) {
+
+    }
+} */
 
 const prevBtn = document.querySelector('.left-handle')
 const nextBtn = document.querySelector('.right-handle')
 const slider = document.querySelector('.slider')
 const cards = Array.from(slider.children)
-console.log(cards)
 
 prevBtn.addEventListener("click", e => {
     const slider = document.querySelector(".slider")
@@ -38,12 +99,10 @@ prevBtn.addEventListener("click", e => {
     slider.style.setProperty("--slider-index", sliderIndex + 1)
     firstItem.classList.remove('first-item')
     firstItem = cards[indexFirstItem + 1]
-    console.log(firstItem)
     firstItem.classList.add('first-item')
     lastItem.classList.remove('last-item')
     lastItem = cards[indexLastItem + 1]
     lastItem.classList.add('last-item')
-    console.log(lastItem)
     }
 })
 
@@ -60,12 +119,10 @@ nextBtn.addEventListener("click", e => {
     slider.style.setProperty("--slider-index", sliderIndex - 1)
     firstItem.classList.remove('first-item')
     firstItem = cards[indexFirstItem - 1]
-    console.log(firstItem)
     firstItem.classList.add('first-item')
     lastItem.classList.remove('last-item')
     lastItem = cards[indexLastItem - 1]
     lastItem.classList.add('last-item')
-    console.log(lastItem)
     }
 })
 
