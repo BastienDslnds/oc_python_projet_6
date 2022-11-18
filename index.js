@@ -138,8 +138,14 @@ categoriesUrl.forEach(async (url, index) => {
     const moviesUrl = await getMoviesUrl(url)
     if (index == 0){
         const bestMovieInfo = await getMovieInfo(moviesUrl[0])
-        const bestMovieSection = document.querySelector('.top-film')
-        bestMovieSection.style.setProperty("background-image", 'url(' + bestMovieInfo.image_url +')')
+        const bestMovieImage = new Image()
+        bestMovieImage.src = bestMovieInfo.image_url
+        bestMovieImage.setAttribute('class', 'best-movie-image')
+        const bestMovieTitle = bestMovieInfo.title
+        const bestMovieDescription = bestMovieInfo.description
+        document.querySelector('.best-movie-container-image').appendChild(bestMovieImage)
+        document.querySelector('.best-movie-title').innerText = bestMovieTitle
+        document.querySelector('.best-movie-description').innerText = bestMovieDescription
     }
     const slider = sliders[index]
     moviesUrl.forEach(async (movieUrl, index) => {
