@@ -99,9 +99,6 @@ const createMovieModal = async function(movieInfo, index) {
     return movieModal
 }
 
-getMovieInfo("http://localhost:8000/api/v1/titles/1508669")
-.then((movieInfo) => createMovieModal(movieInfo))
-
 /* fonction pour récupérer l'image de chaque film d'une catégorie */
 const getMoviesUrlImage = async function(url){
     return fetch(url)
@@ -125,7 +122,7 @@ const sliders = document.querySelectorAll('.slider')
 Pour chaque url de film, récupérer les informations
 Pour chaque movie info, je dois créer la balise img + la modal */
 
-categoriesUrl.forEach(async (url, index) => {
+/*categoriesUrl.forEach(async (url, index) => {
     const moviesUrl = await getMoviesUrl(url)
     if (index == 0){
         const bestMovieInfo = await getMovieInfo(moviesUrl[0])
@@ -143,7 +140,7 @@ categoriesUrl.forEach(async (url, index) => {
         liBalise.appendChild(img)
         divCategory.appendChild(movieModal)
     })
-})
+})*/
 
 /* Gestion du défilement des carousels */
 
@@ -210,8 +207,20 @@ closeBtnModal.onclick = function () {
 /* gestion modals carousel */
 
 const carousels = document.querySelectorAll(".slider")
+const modal = document.querySelector('.modal')
+const closeButton = document.querySelector('.close-button')
 
 carousels.forEach((carousel) => {
+    carousel.addEventListener('click', (event) => {
+        modal.style.display = "flex"
+    })
+})
+
+closeButton.addEventListener('click', () => modal.style.display = "none")
+
+
+
+/*carousels.forEach((carousel) => {
     carousel.addEventListener('click', (event) => {
         const numItemSelected = event.composedPath()[1].getAttribute('class').split(" ")[1]
         const categorySelected = event.composedPath()[4]
@@ -226,5 +235,5 @@ carousels.forEach((carousel) => {
 const closeModal = function(bouton, modal) {
     modal.style.display = "none"
     bouton.removeEventListener('click', () => closeModal(bouton, modal))
-}
+}*/
 

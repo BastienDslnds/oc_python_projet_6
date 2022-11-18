@@ -122,31 +122,70 @@ img {
 /* modal */
 
 .modal {
-    display: none;
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: auto;
-    height: auto;
-    background-color:rgba(0, 0, 0);
+    background-color: black;
     color: white;
-    top: 90%;
+    position: fixed;
+    top: 50%;
     left: 50%;
-    height: 100%;
-    position: absolute;
     transform: translate(-50%, -50%);
-    z-index: 2;
+    max-width: 80%;
+    max-height: 80%;
+    z-index: 1;
 }
 
-.modal-image {
-    width: 50%;
-    height: 50%;
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+}
+
+.modal-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, .5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
 }
 
 ul {
     list-style-type: none;
     padding-left: 0;
-}
-
-li {
-    padding-bottom: 1rem;
 }
