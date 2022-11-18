@@ -122,7 +122,7 @@ img {
 /* modal */
 
 .modal {
-    display: flex;
+    display: none;
     flex-direction: column;
     background-color: black;
     color: white;
@@ -141,6 +141,12 @@ img {
     align-items: center;
 }
 
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
 .modal-body {
     display: flex;
     flex-direction: column;
@@ -148,15 +154,19 @@ img {
     overflow: scroll;
 }
 
+.modal-box-img {
+    height: 50%;
+}
+
+.modal-img {
+    max-height: 100%;
+    width: auto;
+}
+
 .modal-list {
     display: flex;
     flex-direction: column;
     width: 100%;
-}
-
-.modal-title {
-    font-size: 1.25rem;
-    font-weight: bold;
 }
 
 .modal-header .close-button {
@@ -188,4 +198,13 @@ img {
 ul {
     list-style-type: none;
     padding-left: 0;
+}
+
+.modal-list li {
+    padding-bottom: 0.5rem;
+}
+
+.info-film {
+    font-weight: bold;
+    font-size: 1.15rem;
 }

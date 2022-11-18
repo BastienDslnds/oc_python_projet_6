@@ -46,57 +46,69 @@ const getMovieInfo = async function (movieUrl) {
 
 /* Afficher les résultats d'un film dans une modal */
 
-const createMovieModal = async function(movieInfo, index) {
-    const movieModal = document.createElement('div')
-    movieModal.setAttribute('class', 'modal item-' + index)
-    const movieModalList = document.createElement('ul')
-    for (let i=0; i < 12; i++) {
+const createModal = async function(movieInfo, index) {
+    const modal = document.createElement('div')
+    modal.setAttribute('class', 'modal item-' + index)
+    const modalHeader = document.createElement('div')
+    modalHeader.setAttribute('class', 'modal-header')
+    modal.appendChild(modalHeader)
+    const modalTitle = document.createElement('h1')
+    modalTitle.setAttribute('class', 'modal-title')
+    modalHeader.appendChild(modalTitle)
+    const modalCloseBtn = document.createElement('button')
+    modalCloseBtn.innerHTML = "&times;"
+    modalCloseBtn.setAttribute('class', 'close-button')
+    modalHeader.appendChild(modalCloseBtn)
+    const modalBody = document.createElement('div')
+    modalBody.setAttribute('class', 'modal-body')
+    modal.appendChild(modalBody)
+    const modalDivImg = document.createElement('div')
+    modalDivImg.setAttribute('class', 'modal-box-img')
+    modalBody.appendChild(modalDivImg)
+    const modalInfoList = document.createElement('ul')
+    modalInfoList.setAttribute('class', 'modal-list')
+    modalBody.appendChild(modalInfoList)
+    for (let i=1; i < 12; i++) {
         let element = document.createElement('li')
-        movieModalList.appendChild(element)
+        modalInfoList.appendChild(element)
     }
-    movieModalList.children[0].setAttribute('class', 'image_url')
-    movieModalList.children[1].innerText = "Titre du film: "
-    movieModalList.children[1].setAttribute('class', 'title')
-    movieModalList.children[2].innerText = "Genre du film: "
-    movieModalList.children[2].setAttribute('class', 'genres')
-    movieModalList.children[3].innerText = "Date de sortie: "
-    movieModalList.children[3].setAttribute('class', 'date_published')
-    movieModalList.children[4].innerText = "Rated: "
-    movieModalList.children[4].setAttribute('class', 'rated')
-    movieModalList.children[5].innerText = "Imdb score: "
-    movieModalList.children[5].setAttribute('class', 'imdb_score')
-    movieModalList.children[6].innerText = "Réalisateurs: "
-    movieModalList.children[6].setAttribute('class', 'directors')
-    movieModalList.children[7].innerText = "Acteurs: "
-    movieModalList.children[7].setAttribute('class', 'actors')
-    movieModalList.children[8].innerText = "Durée: "
-    movieModalList.children[8].setAttribute('class', 'duration')
-    movieModalList.children[9].innerText = "Pays d'origine: "
-    movieModalList.children[9].setAttribute('class', 'countries')
-    movieModalList.children[10].innerText = "Box-office: "
-    movieModalList.children[10].setAttribute('class', 'box_office_result')
-    movieModalList.children[11].innerText = "Description: "
-    movieModalList.children[11].setAttribute('class', 'description')
-    movieModal.appendChild(movieModalList)
+    modalInfoList.children[0].innerText = "Genre du film: "
+    modalInfoList.children[0].setAttribute('class', 'genres')
+    modalInfoList.children[1].innerText = "Date de sortie: "
+    modalInfoList.children[1].setAttribute('class', 'date_published')
+    modalInfoList.children[2].innerText = "Rated: "
+    modalInfoList.children[2].setAttribute('class', 'rated')
+    modalInfoList.children[3].innerText = "Imdb score: "
+    modalInfoList.children[3].setAttribute('class', 'imdb_score')
+    modalInfoList.children[4].innerText = "Réalisateurs: "
+    modalInfoList.children[4].setAttribute('class', 'directors')
+    modalInfoList.children[5].innerText = "Acteurs: "
+    modalInfoList.children[5].setAttribute('class', 'actors')
+    modalInfoList.children[6].innerText = "Durée: "
+    modalInfoList.children[6].setAttribute('class', 'duration')
+    modalInfoList.children[7].innerText = "Pays d'origine: "
+    modalInfoList.children[7].setAttribute('class', 'countries')
+    modalInfoList.children[8].innerText = "Box-office: "
+    modalInfoList.children[8].setAttribute('class', 'box_office_result')
+    modalInfoList.children[9].innerText = "Description: "
+    modalInfoList.children[9].setAttribute('class', 'description')
     for (key in movieInfo) {
         const info = movieInfo[key]
-        const liBalise = movieModalList.querySelector('.'+key)
+        const liBalise = modalInfoList.querySelector('.'+key)
         if (key == 'image_url') {
             let movieImage = new Image();
             movieImage.src = info;
-            movieImage.setAttribute('class','movie-modal')
-            liBalise.appendChild(movieImage);
+            movieImage.setAttribute('class', 'modal-img')
+            modalDivImg.appendChild(movieImage);
+        } else if (key == 'title') {
+            modalTitle.innerText = info;
         } else {
             const spanBalise = document.createElement('span')
             spanBalise.innerText = info
             liBalise.appendChild(spanBalise)
-            movieModalList.appendChild(liBalise)
         }
     }
-    const modalButton = document.createElement('button')
-    modalButton.innerText = "Fermer"
-    movieModal.appendChild(modalButton)
-    return movieModal
+    return modal
 }
 
 /* fonction pour récupérer l'image de chaque film d'une catégorie */
@@ -122,7 +134,7 @@ const sliders = document.querySelectorAll('.slider')
 Pour chaque url de film, récupérer les informations
 Pour chaque movie info, je dois créer la balise img + la modal */
 
-/*categoriesUrl.forEach(async (url, index) => {
+categoriesUrl.forEach(async (url, index) => {
     const moviesUrl = await getMoviesUrl(url)
     if (index == 0){
         const bestMovieInfo = await getMovieInfo(moviesUrl[0])
@@ -136,11 +148,11 @@ Pour chaque movie info, je dois créer la balise img + la modal */
         img.src = movieInfo.image_url;
         const liBalise = slider.children[index]
         const divCategory = slider.parentElement.parentElement
-        const movieModal = await createMovieModal(movieInfo, index+1)
+        const movieModal = await createModal(movieInfo, index+1)
         liBalise.appendChild(img)
         divCategory.appendChild(movieModal)
     })
-})*/
+})
 
 /* Gestion du défilement des carousels */
 
@@ -207,7 +219,9 @@ closeBtnModal.onclick = function () {
 /* gestion modals carousel */
 
 const carousels = document.querySelectorAll(".slider")
-const modal = document.querySelector('.modal')
+
+
+/*const modal = document.querySelector('.modal')
 const closeButton = document.querySelector('.close-button')
 
 carousels.forEach((carousel) => {
@@ -216,11 +230,11 @@ carousels.forEach((carousel) => {
     })
 })
 
-closeButton.addEventListener('click', () => modal.style.display = "none")
+closeButton.addEventListener('click', () => modal.style.display = "none")*/
 
 
 
-/*carousels.forEach((carousel) => {
+carousels.forEach((carousel) => {
     carousel.addEventListener('click', (event) => {
         const numItemSelected = event.composedPath()[1].getAttribute('class').split(" ")[1]
         const categorySelected = event.composedPath()[4]
@@ -235,5 +249,5 @@ closeButton.addEventListener('click', () => modal.style.display = "none")
 const closeModal = function(bouton, modal) {
     modal.style.display = "none"
     bouton.removeEventListener('click', () => closeModal(bouton, modal))
-}*/
+}
 
