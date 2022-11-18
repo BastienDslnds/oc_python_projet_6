@@ -1,7 +1,11 @@
+const category1 = "comedy"
+const category2 = "thriller"
+const category3 = "history"
+
 const urlBestAll = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=7"
-const urlBestGenre1= "http://localhost:8000/api/v1/titles/?genre=comedy&sort_by=-imdb_score&page_size=7"
-const urlBestGenre2 = "http://localhost:8000/api/v1/titles/?genre=thriller&sort_by=-imdb_score&page_size=7"
-const urlBestGenre3 = "http://localhost:8000/api/v1/titles/?genre=history&sort_by=-imdb_score&page_size=7"
+const urlBestGenre1= "http://localhost:8000/api/v1/titles/?genre="+category1+"&sort_by=-imdb_score&page_size=7"
+const urlBestGenre2 = "http://localhost:8000/api/v1/titles/?genre="+category2+"&sort_by=-imdb_score&page_size=7"
+const urlBestGenre3 = "http://localhost:8000/api/v1/titles/?genre="+category3+"&sort_by=-imdb_score&page_size=7"
 const categoriesUrl = [urlBestAll, urlBestGenre1, urlBestGenre2, urlBestGenre3]
 
 /* Récupérer les informations d'un film */
@@ -14,6 +18,7 @@ const getMoviesUrl = async function (categorieUrl) {
         }
     })
     .then(function(datas) {
+        console.log(datas)
         const moviesUrl = datas.results.map((data) => data.url)
         return moviesUrl
     })
@@ -146,6 +151,8 @@ categoriesUrl.forEach(async (url, index) => {
         document.querySelector('.best-movie-container-image').appendChild(bestMovieImage)
         document.querySelector('.best-movie-title').innerText = bestMovieTitle
         document.querySelector('.best-movie-description').innerText = bestMovieDescription
+        const bestMovieModal = await createModal(bestMovieInfo, index)
+        document.querySelector('.best-movie').appendChild(bestMovieModal)
     }
     const slider = sliders[index]
     moviesUrl.forEach(async (movieUrl, index) => {
@@ -211,19 +218,9 @@ nextBtns.forEach((nextBtn) => {
     })
 })
 
-/* gestion modal top film 
-
-openBtnModal.onclick = function () {
-    modal.style.display = "block";
-}
-
-closeBtnModal.onclick = function () {
-    modal.style.display = "none";
-}*/
-
-
 /* gestion modals carousel */
 
+const infoBtn = document.querySelector('.button-info')
 const carousels = document.querySelectorAll(".slider")
 
 
@@ -239,6 +236,12 @@ carousels.forEach((carousel) => {
 closeButton.addEventListener('click', () => modal.style.display = "none")*/
 
 
+infoBtn.addEventListener('click', (event) => {
+    const bestModalMovie = document.querySelector('.best-movie').lastElementChild
+    const closeBtnModal = bestModalMovie.querySelector('button')
+    bestModalMovie.style.display = "flex"
+    closeBtnModal.addEventListener('click', () => closeModal(closeBtnModal, bestModalMovie))
+})
 
 carousels.forEach((carousel) => {
     carousel.addEventListener('click', (event) => {
@@ -257,3 +260,22 @@ const closeModal = function(bouton, modal) {
     bouton.removeEventListener('click', () => closeModal(bouton, modal))
 }
 
+/* Fixer le header */
+
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunction()};
+
+// Get the header
+var header = document.querySelector(".header");
+
+// Get the offset position of the navbar
+var sticky = header.offsetTop;
+
+// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
