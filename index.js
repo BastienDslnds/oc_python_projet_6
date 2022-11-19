@@ -1,6 +1,10 @@
+/* Définition des catégories */
+
 const category1 = "comedy"
 const category2 = "thriller"
 const category3 = "history"
+
+/* Définition de l'url de chaque catégorie */
 
 const urlBestAll = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=7"
 const urlBestGenre1= "http://localhost:8000/api/v1/titles/?genre="+category1+"&sort_by=-imdb_score&page_size=7"
@@ -8,7 +12,7 @@ const urlBestGenre2 = "http://localhost:8000/api/v1/titles/?genre="+category2+"&
 const urlBestGenre3 = "http://localhost:8000/api/v1/titles/?genre="+category3+"&sort_by=-imdb_score&page_size=7"
 const categoriesUrl = [urlBestAll, urlBestGenre1, urlBestGenre2, urlBestGenre3]
 
-/* Récupérer les informations d'un film */
+/* Fonction pour récupérer les informations des films d'une catégorie */
 
 const getMoviesUrl = async function (categorieUrl) {
     return fetch(categorieUrl)
@@ -23,6 +27,8 @@ const getMoviesUrl = async function (categorieUrl) {
         return moviesUrl
     })
 }
+
+/* Fonction pour récupérer les informations d'une film */
 
 const getMovieInfo = async function (movieUrl) {
     return fetch(movieUrl)
@@ -49,7 +55,7 @@ const getMovieInfo = async function (movieUrl) {
     })
 }
 
-/* Afficher les résultats d'un film dans une modal */
+/* Fonction pour créer une modale avec les informations d'un film */
 
 const createModal = async function(movieInfo, index) {
     const modal = document.createElement('div')
@@ -77,25 +83,25 @@ const createModal = async function(movieInfo, index) {
         let element = document.createElement('li')
         modalInfoList.appendChild(element)
     }
-    modalInfoList.children[0].innerText = "Genre du film: "
+    modalInfoList.children[0].appendChild(document.createElement('strong')).innerText = "Genre(s) du film: "
     modalInfoList.children[0].setAttribute('class', 'genres')
-    modalInfoList.children[1].innerText = "Date de sortie: "
+    modalInfoList.children[1].appendChild(document.createElement('strong')).innerText = "Date de sortie: "
     modalInfoList.children[1].setAttribute('class', 'date_published')
-    modalInfoList.children[2].innerText = "Rated: "
+    modalInfoList.children[2].appendChild(document.createElement('strong')).innerText = "Rated: "
     modalInfoList.children[2].setAttribute('class', 'rated')
-    modalInfoList.children[3].innerText = "Imdb score: "
+    modalInfoList.children[3].appendChild(document.createElement('strong')).innerText = "Imdb score: "
     modalInfoList.children[3].setAttribute('class', 'imdb_score')
-    modalInfoList.children[4].innerText = "Réalisateurs: "
+    modalInfoList.children[4].appendChild(document.createElement('strong')).innerText = "Réalisateurs: "
     modalInfoList.children[4].setAttribute('class', 'directors')
-    modalInfoList.children[5].innerText = "Acteurs: "
+    modalInfoList.children[5].appendChild(document.createElement('strong')).innerText = "Acteurs: "
     modalInfoList.children[5].setAttribute('class', 'actors')
-    modalInfoList.children[6].innerText = "Durée: "
+    modalInfoList.children[6].appendChild(document.createElement('strong')).innerText = "Durée: "
     modalInfoList.children[6].setAttribute('class', 'duration')
-    modalInfoList.children[7].innerText = "Pays d'origine: "
+    modalInfoList.children[7].appendChild(document.createElement('strong')).innerText = "Pays d'origine: "
     modalInfoList.children[7].setAttribute('class', 'countries')
-    modalInfoList.children[8].innerText = "Box-office: "
+    modalInfoList.children[8].appendChild(document.createElement('strong')).innerText = "Box-office: "
     modalInfoList.children[8].setAttribute('class', 'box_office_result')
-    modalInfoList.children[9].innerText = "Description: "
+    modalInfoList.children[9].appendChild(document.createElement('strong')).innerText = "Description: "
     modalInfoList.children[9].setAttribute('class', 'description')
     for (key in movieInfo) {
         const info = movieInfo[key]
@@ -116,28 +122,12 @@ const createModal = async function(movieInfo, index) {
     return modal
 }
 
-/* fonction pour récupérer l'image de chaque film d'une catégorie */
-const getMoviesUrlImage = async function(url){
-    return fetch(url)
-    .then(function (response) {
-        if (response.ok) {
-            return response.json()
-        }
-    })
-    .then(function (datas) {
-        const moviesUrlImage = datas.results.map((data) => data.image_url)
-        return moviesUrlImage
-        })
-    .catch(function(err) {
-        console.log(err);
-    });
-}
-
 const sliders = document.querySelectorAll('.slider')
 
-/* Parcourir chaque catégorie, récupérer l'url de chaque film
+/* Parcourir chaque url de catégorie
+Récupérer l'url de chaque film
 Pour chaque url de film, récupérer les informations
-Pour chaque movie info, je dois créer la balise img + la modal */
+A partir des informations, créer l'image du carousel + la modale */
 
 categoriesUrl.forEach(async (url, index) => {
     const moviesUrl = await getMoviesUrl(url)
@@ -171,17 +161,16 @@ categoriesUrl.forEach(async (url, index) => {
 
 const prevBtns = document.querySelectorAll('.left-handle')
 const nextBtns = document.querySelectorAll('.right-handle')
-const slider = document.querySelector('.slider')
-const cards = Array.from(slider.children)
 
 prevBtns.forEach((prevBtn) => {
     prevBtn.addEventListener("click", e => {
         const slider = prevBtn.parentElement.querySelector('.slider')
+        const cards = Array.from(slider.children)
         const sliderIndex = parseInt(getComputedStyle(slider).getPropertyValue("--slider-index"))
     
-        var firstItem = document.querySelector('.first-item')
+        var firstItem = slider.querySelector('.first-item')
         var indexFirstItem = cards.indexOf(firstItem)
-        var lastItem = document.querySelector('.last-item')
+        var lastItem = slider.querySelector('.last-item')
         var indexLastItem = cards.indexOf(lastItem)
     
         if (lastItem != cards[6] ) {
@@ -199,11 +188,12 @@ prevBtns.forEach((prevBtn) => {
 nextBtns.forEach((nextBtn) => {
     nextBtn.addEventListener("click", e => {
         const slider = nextBtn.parentElement.querySelector('.slider')
+        const cards = Array.from(slider.children)
         const sliderIndex = parseInt(getComputedStyle(slider).getPropertyValue("--slider-index"))
         
-        var firstItem = document.querySelector('.first-item')
+        var firstItem = slider.querySelector('.first-item')
         var indexFirstItem = cards.indexOf(firstItem)
-        var lastItem = document.querySelector('.last-item')
+        var lastItem = slider.querySelector('.last-item')
         var indexLastItem = cards.indexOf(lastItem)
         
         if (firstItem != cards[0] ) {
@@ -218,23 +208,9 @@ nextBtns.forEach((nextBtn) => {
     })
 })
 
-/* gestion modals carousel */
+/* gestion de la modale du meilleur film */
 
 const infoBtn = document.querySelector('.button-info')
-const carousels = document.querySelectorAll(".slider")
-
-
-/*const modal = document.querySelector('.modal')
-const closeButton = document.querySelector('.close-button')
-
-carousels.forEach((carousel) => {
-    carousel.addEventListener('click', (event) => {
-        modal.style.display = "flex"
-    })
-})
-
-closeButton.addEventListener('click', () => modal.style.display = "none")*/
-
 
 infoBtn.addEventListener('click', (event) => {
     const bestModalMovie = document.querySelector('.best-movie').lastElementChild
@@ -242,6 +218,10 @@ infoBtn.addEventListener('click', (event) => {
     bestModalMovie.style.display = "flex"
     closeBtnModal.addEventListener('click', () => closeModal(closeBtnModal, bestModalMovie))
 })
+
+/* gestion des modales du carousel */
+
+const carousels = document.querySelectorAll(".slider")
 
 carousels.forEach((carousel) => {
     carousel.addEventListener('click', (event) => {
@@ -262,16 +242,12 @@ const closeModal = function(bouton, modal) {
 
 /* Fixer le header */
 
-// When the user scrolls the page, execute myFunction
 window.onscroll = function() {myFunction()};
 
-// Get the header
 var header = document.querySelector(".header");
 
-// Get the offset position of the navbar
 var sticky = header.offsetTop;
 
-// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
 function myFunction() {
   if (window.pageYOffset > sticky) {
     header.classList.add("sticky");

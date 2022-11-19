@@ -9,7 +9,7 @@ body {
 }
 
 
-/* 3 grands blocs du body */
+/* header */
 
 header
 {
@@ -30,12 +30,27 @@ header a, h1 {
     color: white;
 }
 
+.header-navigation ul
+{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-navigation li
+{
+    margin-right: 20px;
+}
+
+/* section du meilleur film */
+
 .best-movie
 {
     background-color: black;
     color: white;
     position: relative;
     display: flex;
+    justify-content: center;
     align-items: center;
     padding: 0.5rem;
 }
@@ -57,6 +72,8 @@ header a, h1 {
     width: auto;
 }
 
+/* catégories */
+
  #categories 
  {
     background-color: black;
@@ -65,22 +82,6 @@ header a, h1 {
     justify-content: space-between;
     padding-bottom: 1rem;
 }
-
- /* Elements du header */
-
-.header-navigation ul
-{
-    list-style-type: none;
-    display: flex;
-    justify-content: space-between;
-}
-
-.header-navigation li
-{
-    margin-right: 20px;
-}
-
-/* Elements de la section des categories */
 
 .category-top-rated{
     display: flex;
@@ -201,27 +202,6 @@ img {
     color: white;
 }
 
-#overlay {
-    position: fixed;
-    opacity: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0, .5);
-    pointer-events: none;
-}
-
-#overlay.active {
-    opacity: 1;
-    pointer-events: all;
-}
-
-ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
 .modal-list li {
     padding-bottom: 0.5rem;
 }
@@ -231,7 +211,13 @@ ul {
     font-size: 1.15rem;
 }
 
-/* The sticky class is added to the header with JS when it reaches its scroll position */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+/* Gestion du header fixé */
+
 .sticky {
     position: fixed;
     top: 0;
