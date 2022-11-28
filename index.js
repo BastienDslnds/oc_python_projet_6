@@ -49,7 +49,7 @@ const getMovieInfo = async function (movieUrl) {
         movieInfo['actors'] = datas.actors;
         movieInfo['duration'] = datas.duration;
         movieInfo['countries'] = datas.countries;
-        movieInfo['box_office_result'] = datas.reviews_from_users;
+        movieInfo['box_office_result'] = datas.worldwide_gross_income;
         movieInfo['description'] = datas.description;
         return movieInfo;
     })
@@ -91,11 +91,11 @@ const createModal = async function(movieInfo, index) {
     modalInfoList.children[2].setAttribute('class', 'rated')
     modalInfoList.children[3].appendChild(document.createElement('strong')).innerText = "Imdb score: "
     modalInfoList.children[3].setAttribute('class', 'imdb_score')
-    modalInfoList.children[4].appendChild(document.createElement('strong')).innerText = "Réalisateurs: "
+    modalInfoList.children[4].appendChild(document.createElement('strong')).innerText = "Réalisateur(s): "
     modalInfoList.children[4].setAttribute('class', 'directors')
-    modalInfoList.children[5].appendChild(document.createElement('strong')).innerText = "Acteurs: "
+    modalInfoList.children[5].appendChild(document.createElement('strong')).innerText = "Acteur(s): "
     modalInfoList.children[5].setAttribute('class', 'actors')
-    modalInfoList.children[6].appendChild(document.createElement('strong')).innerText = "Durée: "
+    modalInfoList.children[6].appendChild(document.createElement('strong')).innerText = "Durée (min): "
     modalInfoList.children[6].setAttribute('class', 'duration')
     modalInfoList.children[7].appendChild(document.createElement('strong')).innerText = "Pays d'origine: "
     modalInfoList.children[7].setAttribute('class', 'countries')
