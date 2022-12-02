@@ -9,6 +9,7 @@ body {
 }
 
 
+
 /* header */
 
 header
@@ -42,7 +43,8 @@ header a, h1 {
     margin-right: 20px;
 }
 
-/* section du meilleur film */
+
+/* best movie section */
 
 .best-movie
 {
@@ -72,7 +74,8 @@ header a, h1 {
     width: auto;
 }
 
-/* catégories */
+
+/* categories */
 
  #categories 
  {
@@ -114,7 +117,6 @@ header a, h1 {
 
 .carousel-item {
     flex: 0 0 25%;
-    max-width: 25%;
     height: auto;
     padding: 0rem;
     display: flex;
@@ -144,6 +146,7 @@ img {
     font-size: 7rem;
 }
 
+
 /* modal */
 
 .modal {
@@ -162,12 +165,6 @@ img {
 
 .modal-header {
     position: relative;
-}
-
-.close-button {
-    position: absolute;
-    top: 0;
-    right: 0;
 }
 
 .modal-title {
@@ -189,11 +186,6 @@ img {
     height: 50%;
 }
 
-.modal-img {
-    max-height: 100%;
-    width: auto;
-}
-
 .modal-list {
     display: flex;
     flex-direction: column;
@@ -202,6 +194,9 @@ img {
 }
 
 .modal-header .close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
     cursor: pointer;
     border: none;
     outline: none;
@@ -225,7 +220,8 @@ ul {
     padding-left: 0;
 }
 
-/* Gestion du header fixé */
+
+/* fixed header management */
 
 .sticky {
     position: fixed;
@@ -235,4 +231,24 @@ ul {
 
 .sticky + .content {
     padding-top: 102px;
+}
+
+
+/* overlay management */
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, .5);
+    z-index: 2;
+    pointer-events: none; /* pour pouvoir cliquer sur les boutons lorsque l'overlay n'est pas actif */
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all; /* pour ne plus pouvoir cliquer */
 }

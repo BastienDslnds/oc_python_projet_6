@@ -24,33 +24,33 @@
     </header>
 
     <div class="content">
-        <!-- section du meilleur film -->
+        <!-- best movie section -->
         <section class="best-movie" aria-label="film à la une">
             <div class="best-movie-container-image">
             </div>
             <div class="best-movie-info">
-                <h3 class="best-movie-title"></h3>
+                <h3 class="best-movie-title">Title</h3>
                 <button class="button-info" aria-label="">Informations</button>
-                <p class="best-movie-description"></p>
+                <p class="best-movie-description">Description</p>
             </div>
         </section>
     
-        <!-- section des différentes catégories -->
+        <!-- categories section -->
         <section id="categories" aria-hidden="false">
     
-            <!-- division des meilleurs films -->
+            <!-- best movies division -->
             <div class="category">
                 <div class="title-category">
-                    <h1>Films les mieux notés</h1>
+                    <h2>Films les mieux notés</h2>
                 </div>
     
-                <!-- liste à puces pour le carousel des films les mieux notés -->
+                <!-- best movies carousel -->
                 <div class="container-category">
-                    <button class="handle left-handle">
+                    <div class="handle left-handle">
                         <div class="slider-button">
                             &#8249;
                         </div>
-                    </button> 
+                    </div> 
     
                     <ul class="slider slider-one" id="row-1" aria-label="top rated movies">
                         <li class="carousel-item item-1 first-item">
@@ -69,26 +69,26 @@
                         </li>          
                     </ul>
     
-                    <button class="handle right-handle">
+                    <div class="handle right-handle">
                         <div class="slider-button">&#8250;
                         </div>
-                    </button>
+                    </div>
                 </div>
             </div>
     
-            <!-- division de la cateorie 1 -->
+            <!-- first category division -->
             <div class="category">
                 <div class="title-category">
-                    <h1>Comédie</h1>
+                    <h2>Comédie</h2>
                 </div>
     
-                <!-- liste à puces pour le carousel des films les mieux notés -->
+                <!-- carousel -->
                 <div class="container-category">
-                    <button class="handle left-handle">
+                    <div class="handle left-handle">
                         <div class="slider-button">
                             &#8249;
                         </div>
-                    </button> 
+                    </div> 
     
                     <ul class="slider" id="row-2" aria-label="top rated movies">
                         <li class="carousel-item item-1 first-item">
@@ -114,26 +114,26 @@
                         </li>           
                     </ul>
     
-                    <button class="handle right-handle">
+                    <div class="handle right-handle">
                         <div class="slider-button">&#8250;
                         </div>
-                    </button>
+                    </div>
                 </div>
             </div>
     
-            <!-- division de la categorie 2 -->
-            <div class="category-two">
+            <!-- second category division -->
+            <div class="category">
                 <div class="title-category">
-                    <h1>Thriller</h1>
+                    <h2>Thriller</h2>
                 </div>
     
-                <!-- liste à puces pour le carousel des films les mieux notés -->
+                <!-- carousel -->
                 <div class="container-category">
-                    <button class="handle left-handle">
+                    <div class="handle left-handle">
                         <div class="slider-button">
                             &#8249;
                         </div>
-                    </button> 
+                    </div> 
     
                     <ul class="slider" id="row-3" aria-label="top rated movies">
                         <li class="carousel-item item-1 first-item">
@@ -159,26 +159,26 @@
                         </li>          
                     </ul>
     
-                    <button class="handle right-handle">
+                    <div class="handle right-handle">
                         <div class="slider-button">&#8250;
                         </div>
-                    </button>
+                    </div>
                 </div>
             </div>
     
-            <!-- division de la categorie 3 -->
-            <div class="category-three">
+            <!-- third category division -->
+            <div class="category">
                 <div class="title-category">
-                    <h1>Histoire</h1>
+                    <h2>Histoire</h2>
                 </div>
     
-                <!-- liste à puces pour le carousel des films les mieux notés -->
+                <!-- carousel -->
                 <div class="container-category">
-                    <button class="handle left-handle">
+                    <div class="handle left-handle">
                         <div class="slider-button">
                             &#8249;
                         </div>
-                    </button> 
+                    </div> 
     
                     <ul class="slider" id="row-4" aria-label="top rated movies">
                         <li class="carousel-item item-1 first-item">
@@ -204,14 +204,18 @@
                         </li>          
                     </ul>
     
-                    <button class="handle right-handle">
+                    <div class="handle right-handle">
                         <div class="slider-button">&#8250;
                         </div>
-                    </button>
+                    </div>
                 </div>
             </div>
         </section>
     </div>
+
+    <!-- overlay when a modal is open -->
+    <div id="overlay"></div>
+    
     <script src="index.js"></script>
 </body>
 </html>

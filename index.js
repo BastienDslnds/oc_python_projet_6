@@ -1,10 +1,10 @@
-/* Définition des catégories */
+/* Categories definition */
 
 const category1 = "comedy"
 const category2 = "thriller"
 const category3 = "history"
 
-/* Définition de l'url de chaque catégorie */
+/* Definition of each category url */
 
 const urlBestAll = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=7"
 const urlBestGenre1= "http://localhost:8000/api/v1/titles/?genre="+category1+"&sort_by=-imdb_score&page_size=7"
@@ -12,7 +12,7 @@ const urlBestGenre2 = "http://localhost:8000/api/v1/titles/?genre="+category2+"&
 const urlBestGenre3 = "http://localhost:8000/api/v1/titles/?genre="+category3+"&sort_by=-imdb_score&page_size=7"
 const categoriesUrl = [urlBestAll, urlBestGenre1, urlBestGenre2, urlBestGenre3]
 
-/* Fonction pour récupérer les informations des films d'une catégorie */
+/* Function to collect movies information of a category */
 
 const getMoviesUrl = async function (categorieUrl) {
     return fetch(categorieUrl)
@@ -28,7 +28,7 @@ const getMoviesUrl = async function (categorieUrl) {
     })
 }
 
-/* Fonction pour récupérer les informations d'une film */
+/* Function to collect movie information */
 
 const getMovieInfo = async function (movieUrl) {
     return fetch(movieUrl)
@@ -55,7 +55,7 @@ const getMovieInfo = async function (movieUrl) {
     })
 }
 
-/* Fonction pour créer une modale avec les informations d'un film */
+/* Function to create a modal with movie information */
 
 const createModal = async function(movieInfo, index) {
     const modal = document.createElement('div')
@@ -124,10 +124,10 @@ const createModal = async function(movieInfo, index) {
 
 const sliders = document.querySelectorAll('.slider')
 
-/* Parcourir chaque url de catégorie
-Récupérer l'url de chaque film
-Pour chaque url de film, récupérer les informations
-A partir des informations, créer l'image du carousel + la modale */
+/* Loop on urls of categories :
+- collect url of each category film
+- collect movie information for each movie url
+- from movie information, display movie image in the carousel and create its modal */
 
 categoriesUrl.forEach(async (url, index) => {
     const moviesUrl = await getMoviesUrl(url)
@@ -157,7 +157,7 @@ categoriesUrl.forEach(async (url, index) => {
     })
 })
 
-/* Gestion du défilement des carousels */
+/* Scroll management of carousels */
 
 const prevBtns = document.querySelectorAll('.left-handle')
 const nextBtns = document.querySelectorAll('.right-handle')
@@ -208,7 +208,10 @@ nextBtns.forEach((nextBtn) => {
     })
 })
 
-/* gestion de la modale du meilleur film */
+
+/* best movie modal management */
+
+const overlay = document.getElementById('overlay')
 
 const infoBtn = document.querySelector('.button-info')
 
@@ -216,10 +219,12 @@ infoBtn.addEventListener('click', (event) => {
     const bestModalMovie = document.querySelector('.best-movie').lastElementChild
     const closeBtnModal = bestModalMovie.querySelector('button')
     bestModalMovie.style.display = "flex"
+    bestModalMovie.classList.add('active')
+    overlay.classList.add('active')
     closeBtnModal.addEventListener('click', () => closeModal(closeBtnModal, bestModalMovie))
 })
 
-/* gestion des modales du carousel */
+/* carousels modals management */
 
 const carousels = document.querySelectorAll(".slider")
 
@@ -231,16 +236,20 @@ carousels.forEach((carousel) => {
         const modalMovie = categorySelected.querySelector(classNeeded)
         const closeBtnModal = modalMovie.querySelector('button')
         modalMovie.style.display = "flex"
+        modalMovie.classList.add('active')
+        overlay.classList.add('active')
         closeBtnModal.addEventListener('click', () => closeModal(closeBtnModal, modalMovie))
     })
 })
 
 const closeModal = function(bouton, modal) {
+    overlay.classList.remove('active')
     modal.style.display = "none"
+    modalMovie.classList.remove('active')
     bouton.removeEventListener('click', () => closeModal(bouton, modal))
 }
 
-/* Fixer le header */
+/* Fixed header management */
 
 window.onscroll = function() {myFunction()};
 
@@ -255,3 +264,5 @@ function myFunction() {
     header.classList.remove("sticky");
   }
 }
+
+
