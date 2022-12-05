@@ -165,21 +165,28 @@ const nextBtns = document.querySelectorAll('.right-handle')
 prevBtns.forEach((prevBtn) => {
     prevBtn.addEventListener("click", e => {
         const slider = prevBtn.parentElement.querySelector('.slider')
+        console.log(slider)
         const cards = Array.from(slider.children)
+        console.log(cards)
         const sliderIndex = parseInt(getComputedStyle(slider).getPropertyValue("--slider-index"))
+        console.log(sliderIndex)
     
         var firstItem = slider.querySelector('.first-item')
+        console.log(firstItem)
         var indexFirstItem = cards.indexOf(firstItem)
+        console.log(indexFirstItem)
         var lastItem = slider.querySelector('.last-item')
+        console.log(lastItem)
         var indexLastItem = cards.indexOf(lastItem)
+        console.log(indexLastItem)
     
-        if (lastItem != cards[6] ) {
-        slider.style.setProperty("--slider-index", sliderIndex + 1)
+        if (firstItem != cards[0] ) {
+        slider.style.setProperty("--slider-index", sliderIndex - 1)
         firstItem.classList.remove('first-item')
-        firstItem = cards[indexFirstItem + 1]
+        firstItem = cards[indexFirstItem - 1]
         firstItem.classList.add('first-item')
         lastItem.classList.remove('last-item')
-        lastItem = cards[indexLastItem + 1]
+        lastItem = cards[indexLastItem - 1]
         lastItem.classList.add('last-item')
         }
     })
@@ -196,13 +203,15 @@ nextBtns.forEach((nextBtn) => {
         var lastItem = slider.querySelector('.last-item')
         var indexLastItem = cards.indexOf(lastItem)
         
-        if (firstItem != cards[0] ) {
-        slider.style.setProperty("--slider-index", sliderIndex - 1)
+        if (firstItem != cards[3] ) {
+        slider.style.setProperty("--slider-index", sliderIndex + 1)
         firstItem.classList.remove('first-item')
-        firstItem = cards[indexFirstItem - 1]
+        firstItem = cards[indexFirstItem + 1]
+        console.log(firstItem)
         firstItem.classList.add('first-item')
         lastItem.classList.remove('last-item')
-        lastItem = cards[indexLastItem - 1]
+        console.log(lastItem)
+        lastItem = cards[indexLastItem + 1]
         lastItem.classList.add('last-item')
         }
     })
